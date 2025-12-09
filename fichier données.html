@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Music Revolution</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            background: #000000;
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 60px;
+        }
+
+        .header {
+            margin-bottom: 120px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #FF3B30 0%, #FF006E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .title {
+            font-size: 84px;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .subtitle {
+            font-size: 32px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: -0.01em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 120px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .stat-card {
+            background: #000000;
+            padding: 60px 40px;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .stat-card:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .stat-number {
+            font-size: 64px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .chart-section {
+            margin-bottom: 120px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .chart-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            letter-spacing: -0.03em;
+        }
+
+        .bar-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .bar-item {
+            position: relative;
+        }
+
+        .bar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 16px;
+        }
+
+        .bar-name {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        .bar-percentage {
+            font-size: 20px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .bar-track {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 4px;
+            transition: width 1.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bar-item.highlight .bar-fill {
+            background: linear-gradient(90deg, #FF3B30 0%, #FF006E 100%);
+        }
+
+        .revolution-section {
+            padding: 100px 0;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .revolution-header {
+            max-width: 800px;
+            margin-bottom: 80px;
+        }
+
+        .revolution-label {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #FF006E;
+            margin-bottom: 24px;
+        }
+
+        .revolution-title {
+            font-size: 72px;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin-bottom: 32px;
+        }
+
+        .revolution-text {
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: -0.01em;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-item {
+            background: #000000;
+            padding: 60px;
+            transition: background 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .feature-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .feature-desc {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                padding: 80px 40px;
+            }
+            
+            .title {
+                font-size: 64px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .revolution-title {
+                font-size: 56px;
+            }
+        }
+
+        .footer {
+            padding: 120px 0 100px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 120px;
+            animation: fadeInUp 1.4s ease-out;
+            position: relative;
+            min-height: 300px;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .app-icon {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #FF3B30 0%, #FF006E 50%, #8B00FF 100%);
+            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 20px 60px rgba(255, 0, 110, 0.3);
+            position: absolute;
+            left: 60px;
+        }
+
+        .bear-icon {
+            width: 85px;
+            height: 85px;
+            position: relative;
+        }
+
+        .bear-head {
+            width: 55px;
+            height: 55px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 2px 15px rgba(255, 255, 255, 0.15);
+        }
+
+        .bear-ear {
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .bear-ear.left {
+            top: 6px;
+            left: 6px;
+        }
+
+        .bear-ear.right {
+            top: 6px;
+            right: 6px;
+        }
+
+        .bear-ear::after {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 59, 48, 0.3);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .bear-eye {
+            width: 7px;
+            height: 7px;
+            background: #1a1a1a;
+            border-radius: 50%;
+            position: absolute;
+            top: 34px;
+        }
+
+        .bear-eye.left {
+            left: 31px;
+        }
+
+        .bear-eye.right {
+            right: 31px;
+        }
+
+        .bear-eye::after {
+            content: '';
+            width: 2.5px;
+            height: 2.5px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 1.5px;
+            left: 1.5px;
+        }
+
+        .bear-nose {
+            width: 12px;
+            height: 10px;
+            background: linear-gradient(135deg, #FF3B30 0%, #FF006E 100%);
+            border-radius: 50%;
+            position: absolute;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 2px 8px rgba(255, 0, 110, 0.25);
+        }
+
+        .bear-nose::after {
+            content: '';
+            width: 1.5px;
+            height: 6px;
+            background: rgba(26, 26, 26, 0.3);
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .bear-smile {
+            width: 18px;
+            height: 10px;
+            border: 2px solid rgba(26, 26, 26, 0.25);
+            border-top: none;
+            border-radius: 0 0 18px 18px;
+            position: absolute;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .bear-cheek {
+            width: 10px;
+            height: 7px;
+            background: rgba(255, 59, 48, 0.15);
+            border-radius: 50%;
+            position: absolute;
+            top: 45px;
+            filter: blur(1px);
+        }
+
+        .bear-cheek.left {
+            left: 20px;
+        }
+
+        .bear-cheek.right {
+            right: 20px;
+        }
+
+        .footer-text-content {
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 56px;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin-bottom: 32px;
+        }
+
+        .footer-title .gradient-text {
+            background: linear-gradient(135deg, #FF3B30 0%, #FF006E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #FF3B30 0%, #FF006E 100%);
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 18px 48px;
+            border: none;
+            border-radius: 980px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            letter-spacing: -0.01em;
+            box-shadow: 0 10px 40px rgba(255, 0, 110, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 50px rgba(255, 0, 110, 0.4);
+        }
+
+        .cta-button:active {
+            transform: scale(0.98);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 60px 24px;
+            }
+            
+            .title {
+                font-size: 48px;
+            }
+            
+            .subtitle {
+                font-size: 24px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-card {
+                padding: 40px 24px;
+            }
+            
+            .chart-title {
+                font-size: 36px;
+            }
+            
+            .bar-name {
+                font-size: 20px;
+            }
+            
+            .revolution-title {
+                font-size: 42px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-item {
+                padding: 40px;
+            }
+
+            .footer {
+                padding: 80px 0 60px;
+                margin-top: 80px;
+                min-height: auto;
+            }
+
+            .footer-content {
+                text-align: center;
+            }
+
+            .footer-text-content {
+                text-align: center;
+            }
+
+            .footer-title {
+                font-size: 36px;
+            }
+
+            .cta-button {
+                padding: 16px 40px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="brand">Apple Music</div>
+            <h1 class="title">The excellence<br>of music<br>streaming</h1>
+            <p class="subtitle">An uncompromising audio experience</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">N°2</div>
+                <div class="stat-label">Worldwide</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">98M+</div>
+                <div class="stat-label">Subscribers</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">15%</div>
+                <div class="stat-label">Market Share</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">167</div>
+                <div class="stat-label">Countries</div>
+            </div>
+        </div>
+
+        <div class="chart-section">
+            <h2 class="chart-title">Global Market Share 2024</h2>
+            <div class="bar-chart">
+                <div class="bar-item">
+                    <div class="bar-header">
+                        <div class="bar-name">Spotify</div>
+                        <div class="bar-percentage">31%</div>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 0%" data-width="100%"></div>
+                    </div>
+                </div>
+
+                <div class="bar-item highlight">
+                    <div class="bar-header">
+                        <div class="bar-name">Apple Music</div>
+                        <div class="bar-percentage">15%</div>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 0%" data-width="48.4%"></div>
+                    </div>
+                </div>
+
+                <div class="bar-item">
+                    <div class="bar-header">
+                        <div class="bar-name">Tencent Music</div>
+                        <div class="bar-percentage">13%</div>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 0%" data-width="41.9%"></div>
+                    </div>
+                </div>
+
+                <div class="bar-item">
+                    <div class="bar-header">
+                        <div class="bar-name">YouTube Music</div>
+                        <div class="bar-percentage">10%</div>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 0%" data-width="32.3%"></div>
+                    </div>
+                </div>
+
+                <div class="bar-item">
+                    <div class="bar-header">
+                        <div class="bar-name">Amazon Music</div>
+                        <div class="bar-percentage">10%</div>
+                    </div>
+                    <div class="bar-track">
+                        <div class="bar-fill" style="width: 0%" data-width="32.3%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="revolution-section">
+            <div class="revolution-header">
+                <div class="revolution-label">Innovation</div>
+                <h2 class="revolution-title">Musical<br>AirDrop</h2>
+                <p class="revolution-text">
+                    A new era of music sharing. Instant, intuitive, and seamless. Share your favorite tracks as simply as sharing a file.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-title">Instant</div>
+                    <div class="feature-desc">Real-time transfer with no friction</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-title">Secure</div>
+                    <div class="feature-desc">End-to-end encryption</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-title">Intelligent</div>
+                    <div class="feature-desc">Automatic detection of nearby devices</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-title">Universal</div>
+                    <div class="feature-desc">Compatible with the entire Apple ecosystem</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-text-content">
+                    <h2 class="footer-title">
+                        <span class="gradient-text">Take the first step</span>,<br>
+                        we'll handle the rest
+                    </h2>
+                    <a href="anglais.html"><button class="cta-button">Get Started</button></a>
+
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.bar-fill').forEach(bar => {
+                    const targetWidth = bar.getAttribute('data-width');
+                    bar.style.width = targetWidth;
+                });
+            }, 300);
+        });
+    </script>
+</body>
+</html>
